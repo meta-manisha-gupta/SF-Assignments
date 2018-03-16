@@ -37,4 +37,4 @@
 
 
 * All students who have hindi or maths
-	SELECT Name FROM Student__c WHERE (Class__r.ClassTeacher__r.Subject__c = 'Hindi;English')
+	SELECT Name FROM Student__c WHERE (Class__r.ClassTeacher__r.Subject__c = 'English') OR (Class__r.ClassTeacher__r.Subject__c = 'Hindi')
