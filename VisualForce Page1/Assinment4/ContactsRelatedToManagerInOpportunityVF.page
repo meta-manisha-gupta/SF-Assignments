@@ -1,0 +1,13 @@
+<apex:page controller="DisplayRelatedContactsToManager" >
+    <apex:form >
+        <apex:pageBlock >          
+            <apex:selectRadio value="{!selectedContact}" >
+                <apex:selectOptions value="{!Contacts}"/>
+            </apex:selectRadio>
+            <apex:commandButton action="{!save}" title="Add selected contact in bill to contact" value="Save" />
+            <apex:commandButton action="{!clear}" title="Remove selected contact in bill to contact" value="Clear" />
+            <apex:commandButton action="{!cancel}" title="Do nothing" value="Cancel" />
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

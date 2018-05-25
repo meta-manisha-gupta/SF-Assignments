@@ -1,0 +1,41 @@
+<apex:page controller="DeleteStudentController">
+    <apex:pageBlock >
+        <apex:form >
+            <apex:pageBlockTable value="{!listOfStudentToBeDeleted}" var="student">
+                
+                <apex:column >
+                    <apex:facet name="header">
+                        Student Id
+                    </apex:facet>
+                    <apex:outputText value="{!student.Id}"/>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">
+                        Student Name
+                    </apex:facet>
+                    <apex:outputText value="{!student.Name}"/>
+                </apex:column>
+                
+                
+                <apex:column >
+                    <apex:facet name="header">
+                        Email
+                    </apex:facet>
+                    <apex:outputText value="{!student.Email__c}"/>
+                </apex:column>
+                
+                
+                <apex:column >
+                    <apex:facet name="header">
+                        Class Name
+                    </apex:facet>
+                    <apex:outputText value="{!student.class__r.Name}"/>
+                </apex:column>
+                
+            </apex:pageBlockTable>
+            <apex:commandButton action="{!deleteStudents}" value="Continue"/>
+            <apex:commandButton action="{!cancel}" value="Cancel"/>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

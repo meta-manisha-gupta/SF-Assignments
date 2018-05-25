@@ -1,0 +1,20 @@
+<apex:page standardController="Student__c" extensions="PDFController">
+    <apex:form >
+    	<apex:pageBlock >
+        	<apex:pageBlockButtons >
+                <apex:commandButton value="Generate PDF" action="{!attachmentExist}" onclick="redirect();">
+                	<apex:param name="studentId" value="{Student__c.Id}"/>
+                </apex:commandButton>
+                 <script>
+                    function redirect(){
+                        window.open('/apex/PDFGeneratorVF?Name={!Student__c.Name}&Email={!Student__c.Email__c}',target='_blank');                      }
+                 </script>
+            </apex:pageBlockButtons>
+            
+          <apex:pageBlockTable value="{!listOfStudents}" var="student">
+            	<apex:column value="{!student.Name}"/>
+                <apex:column value="{!student.Email__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

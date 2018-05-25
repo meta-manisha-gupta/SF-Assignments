@@ -1,0 +1,34 @@
+<apex:page Controller="FilterAccountViewController" >
+    <apex:form >
+    	<apex:pageBlock title="Accounts">
+        	<apex:pageBlockSection title="Account Filtered by Billing City" columns="1">
+            	Filter:
+                <apex:selectList size="1" value="{! billingCity }">
+                    <apex:selectOption itemLabel="Jaipur" itemValue="Jaipur"></apex:selectOption>
+                    <apex:selectOption itemLabel="Udaipur" itemValue="Udaipur"></apex:selectOption>
+                </apex:selectList>
+                <apex:selectList size="1" value="{! billingState }">
+                    <apex:selectOption itemLabel="Rajasthan" itemValue="Rajasthan"></apex:selectOption>
+                    <apex:selectOption itemLabel="Gujrat" itemValue="Gujrat"></apex:selectOption>
+                </apex:selectList>
+                <apex:selectList size="1" value="{! billingCountry }">
+                    <apex:selectOption itemLabel="India" itemValue="India"></apex:selectOption>
+                    <apex:selectOption itemLabel="USA" itemValue="USA"></apex:selectOption>
+                </apex:selectList>
+                <apex:commandButton action="{! getAccounts }" reRender="table1" value="Search"/>
+                
+            <apex:pageBlockTable id="table1" value="{! listOfAccount }" var="account" columnsWidth="60%, 20%, 20%">
+                <apex:column >
+                    <apex:facet name="header">Name</apex:facet>
+                    <apex:outputLink value="/{! account.Id}" target="_blank">
+                    	<apex:outputField value="{! account.Name}"/>
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column value="{! account.BillingCity}"/>
+                <apex:column value="{! account.BillingState}"/>
+                <apex:column value="{! account.BillingCountry}"/>
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

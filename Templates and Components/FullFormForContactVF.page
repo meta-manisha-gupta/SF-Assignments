@@ -1,0 +1,5 @@
+<apex:page controller="SOQLComponentController">
+    <apex:composition template="MyComponentForId">
+
+   	</apex:composition>
+</apex:page>

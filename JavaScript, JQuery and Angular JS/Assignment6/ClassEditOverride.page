@@ -1,0 +1,39 @@
+<apex:page standardController="Class__c">
+    <script src="/soap/ajax/11.0/connection.js"></script>
+	<script src="/soap/ajax/11.0/apex.js"></script> 
+    <script>
+        function save(){
+            sforce.connection.sessionId = '{!$Api.Session_ID}';  
+            
+            var newClassName = document.getElementsByClassName('name')[0].value;
+            
+            var url = new URL(window.location.href);
+            var classId = url.searchParams.get("classId");
+            var classToBeUpdated = new sforce.SObject("Class__c");
+            
+            
+            classToBeUpdated.Id = classId;
+            classToBeUpdated.Name = newClassName;
+            classToBeUpdated.Name__c = newClassName;
+            
+            try{
+            	var result = sforce.connection.update([classToBeUpdated]);
+            }
+            catch(err) {alert(err);}
+            
+            if (result[0].getBoolean("success")) {
+                alert("Updated successfully");
+            }
+            else{
+                alert("Not Added"+result);
+            }
+            window.close();
+        }
+    
+    </script>
+    
+    <apex:form >
+        <input type="text" value="{!$CurrentPage.parameters.className}" class="name"/>
+        <apex:commandButton onclick="save();" value="save"/>
+    </apex:form>
+</apex:page>
