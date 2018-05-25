@@ -1,0 +1,3 @@
+<apex:page controller="JSONController" contentType="application/x-JavaScript; charset=utf-8">
+    {!jsonString}
+</apex:page>

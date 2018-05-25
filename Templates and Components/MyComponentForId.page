@@ -1,0 +1,55 @@
+<apex:page controller="SOQLComponentController">
+    <apex:form >
+    	<apex:outputLabel value="Enter Contact Name: " for="contactName"/>
+        <apex:inputText id="name" value="{!contactName}"/>
+        <br/>
+        <apex:insert name="contactName"/>
+        <apex:commandButton action="{!search}" value="Search" id="searchButton"  />
+        
+        <apex:pageBlock id="contacts_list" >
+            <apex:pageMessages id="showmsg"></apex:pageMessages>
+        	<apex:pageBlockTable value="{!listOfContacts}" var="contactInstance">
+                
+                <apex:column value="{!contactInstance.Id}">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!ViewData}" value="Id{!IF(sortExpression=='Id',IF(sortDirection='ASC','v','^'),'')}">
+                            <apex:param value="Id" name="column" assignTo="{!sortExpression}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+                
+                <apex:column value="{!contactInstance.Name}">
+                	<apex:facet name="header">
+                        <apex:commandLink action="{!ViewData}" value="Name{!IF(sortExpression=='Name',IF(sortDirection='ASC','v','^'),'')}">
+                            <apex:param value="Name" name="column" assignTo="{!sortExpression}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+                
+                <apex:column value="{!contactInstance.Email}">
+                	<apex:facet name="header">
+                        <apex:commandLink action="{!ViewData}" value="Email{!IF(sortExpression=='Email',IF(sortDirection='ASC','v','^'),'')}">
+                            <apex:param value="Email" name="column" assignTo="{!sortExpression}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+                
+                <apex:column value="{!contactInstance.Subject__c}">
+                	<apex:facet name="header">
+                        <apex:commandLink action="{!ViewData}" value="Subject{!IF(sortExpression=='Subject__c',IF(sortDirection='ASC','v','^'),'')}">
+                            <apex:param value="Subject__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+                
+                <apex:column >
+                	<apex:commandLink value="Quick Go" target="_blank" onclick="window.open('https://ap5.salesforce.com/{!contactInstance.Id}');"/>
+                </apex:column>
+                
+            </apex:pageBlockTable>
+            <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!setCon.HasPrevious}"/>
+            <apex:commandLink title="Next Page" value="Next Page" rendered="{!setCon.HasNext}" action="{!Next}"/>
+        
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

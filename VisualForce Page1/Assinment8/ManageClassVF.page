@@ -1,0 +1,40 @@
+<apex:page controller="ManageClassController">
+    <apex:pageBlock >
+        <apex:form >
+            <apex:pageBlockTable value="{!classes}" var="class">
+                <apex:column >
+                    <apex:facet name="header">
+                        Class Name
+                    </apex:facet>
+                    <apex:outputText value="{!class.Name}"/>
+                </apex:column>            
+                <apex:column >
+                    <apex:facet name="header">
+                        Class Size
+                    </apex:facet>
+                    <apex:outputText value="{!class.MaxSize__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                        Actions
+                    </apex:facet>
+                    <apex:commandLink action="{!edit}">Edit
+                        <apex:param name="classId" value="{!class.Id}" />
+                    </apex:commandLink>
+                    <apex:commandLink action="{!deleteClass}">Delete
+                        <apex:param name="classId" value="{!class.Id}" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>  
+        </apex:form>
+    </apex:pageBlock>
+    
+    <apex:outputPanel id="editPanel" rendered="{!NOT(outputPanelEdit)}" >
+        <apex:form >
+            Name : <apex:inputText value="{!className}"/>&nbsp;&nbsp;
+            Size : <apex:inputText value="{!classSize}"/>&nbsp;&nbsp;
+            <apex:commandButton action="{!editClass}" value="Update"/>
+        </apex:form>
+ 		
+    </apex:outputPanel>
+</apex:page>

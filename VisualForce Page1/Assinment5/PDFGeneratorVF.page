@@ -1,0 +1,9 @@
+<apex:page standardController="Student__c"  renderAs="pdf">
+    <apex:pageBlock title="DisplayUserInfo">
+    	<apex:pageBlockSection columns="1">
+            
+            Name:  {!$CurrentPage.parameters.Name}<br/>
+            Email: {!$CurrentPage.parameters.Email}<br/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

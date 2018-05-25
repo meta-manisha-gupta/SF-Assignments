@@ -1,0 +1,11 @@
+<apex:page standardController="Contact">
+   <apex:pageBlock title="Teacher's Detail">
+       <apex:pageBlockSection >
+           <style type="text/css">.record_type { font-color: white; background-color: black; font-style : bold;}</style>
+           <apex:facet name="header">
+          <apex:outputText value="{!Contact.RecordType.Name}" styleClass="record_type" style=" text-align:center;"/>
+           </apex:facet>
+       </apex:pageBlockSection> 
+   	<apex:detail />
+   </apex:pageBlock>
+</apex:page>

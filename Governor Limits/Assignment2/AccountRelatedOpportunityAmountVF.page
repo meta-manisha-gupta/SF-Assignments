@@ -1,0 +1,12 @@
+<apex:page controller="AccountRelatedOpportunityController" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!mapOfAccountAndSumOfAmount}" var="item">
+                <apex:column value="{!item.name}"/>
+                <apex:column headerValue="Sum of Amount">
+                	<apex:outputText value="{!mapOfAccountAndSumOfAmount[item]}"/>
+                </apex:column>
+            </apex:pageBlockTable>         
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

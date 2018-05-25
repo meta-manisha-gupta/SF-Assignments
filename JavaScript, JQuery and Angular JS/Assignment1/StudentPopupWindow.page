@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:pageBlock >
+        <style>
+            #tbl{
+            	border:1px solid #000;
+            }
+        	#tbl td{
+            	border:1px solid #000;
+            }
+        </style>
+        <table id="tbl">
+            <tr><td>Student Name</td><td>Class Name</td></tr>
+            <tr><td><apex:outputText value="{!$CurrentPage.parameters.studentName}" /></td><td><apex:outputText value="{!$CurrentPage.parameters.className}" /></td></tr>    
+        </table>
+                
+    </apex:pageBlock>
+</apex:page>

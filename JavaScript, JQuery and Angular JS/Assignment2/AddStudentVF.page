@@ -1,0 +1,39 @@
+<apex:page >
+   <script src="/soap/ajax/11.0/connection.js"></script>
+	<script src="/soap/ajax/11.0/apex.js"></script> 
+
+    <apex:pageBlock >
+    	<apex:form id="formid">
+            <input type="text" class="name" />
+            <apex:commandButton value="Save" onclick="save();" />
+        </apex:form>
+    </apex:pageBlock>
+    <script>
+		function save(){
+            sforce.connection.sessionId = '{!$Api.Session_ID}';    
+            var newStudent = [];
+            var studentName = document.getElementsByClassName('name')[0].value;
+            var url = new URL(window.location.href);
+            var classId = url.searchParams.get("classId");
+            var student = new sforce.SObject("Student__c");
+            
+            student.Class__c = classId;
+            student.Name = studentName;
+            student.LastName__c = studentName;
+            newStudent.push(student);
+            
+            
+            try{
+            	var result = sforce.connection.create(newStudent);
+            }
+            catch(err) {alert(err);}
+            
+            if (result[0].getBoolean("success")) {
+                alert("Added successfully");
+            }
+            else{
+                alert("Not Added"+result);
+            }
+        }
+    </script>
+</apex:page>
